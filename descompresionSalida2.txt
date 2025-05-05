@@ -1,0 +1,1 @@
+Este es un ejemplo de texto para probar el compresor de Huffman.   
