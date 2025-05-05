@@ -4,8 +4,17 @@ import java.io.*;
 import java.util.*;
 import java.nio.file.Files;
 
+/**
+ * Clase que implementa la compresión de archivos utilizando el algoritmo de Huffman.
+ */
 public class HuffmanCompressor {
 
+    /**
+     * Construye un mapa de frecuencias para cada carácter en el texto.
+     *
+     * @param text El texto del cual se calcularán las frecuencias de caracteres
+     * @return Un mapa donde las claves son los caracteres y los valores son sus frecuencias
+     */
     public static Map<Character, Integer> buildFrequencyMap(String text) {
         Map<Character, Integer> freq = new HashMap<>();
         for (char c : text.toCharArray()) {
@@ -14,9 +23,19 @@ public class HuffmanCompressor {
         return freq;
     }
 
+    /**
+     * Comprime un archivo utilizando el algoritmo de Huffman.
+     *
+     * @param inputFile La ruta del archivo de entrada a comprimir
+     * @param outputHuff La ruta donde se guardará el archivo comprimido (.huff)
+     * @param outputTree La ruta donde se guardará la representación del árbol de Huffman (.hufftree)
+     * @throws IOException Si ocurre un error durante la lectura o escritura de archivos
+     */
     public static void compress(String inputFile, String outputHuff, String outputTree) throws IOException {
+        // Leer el archivo de entrada
         String text = new String(Files.readAllBytes(new File(inputFile).toPath()));
 
+        // Construir el árbol de Huffman
         Map<Character, Integer> freqMap = buildFrequencyMap(text);
         HuffmanTree huffmanTree = new HuffmanTree(freqMap);
         Map<Character, String> codes = huffmanTree.getHuffmanCodes();

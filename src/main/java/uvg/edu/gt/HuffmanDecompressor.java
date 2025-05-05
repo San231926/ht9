@@ -4,8 +4,20 @@ import java.io.*;
 import java.util.*;
 import java.nio.file.Files;
 
+/**
+ * Clase que implementa la descompresión de archivos utilizando el algoritmo de Huffman.
+ * Permite descomprimir un archivo comprimido (.huff) utilizando su correspondiente
+ * archivo de árbol (.hufftree) para recuperar el archivo de texto original.
+ */
 public class HuffmanDecompressor {
 
+    /**
+     * Reconstruye el árbol de Huffman a partir de su representación serializada.
+     *
+     * @param treeData La cadena que contiene la representación serializada del árbol de Huffman
+     * @param index Un arreglo con un único valor que representa la posición actual en el proceso de deserialización
+     * @return El nodo raíz del árbol de Huffman reconstruido
+     */
     public static HuffmanNode deserializeTree(String treeData, int[] index) {
         char marker = treeData.charAt(index[0]++);
         if (marker == '1') {
@@ -19,6 +31,14 @@ public class HuffmanDecompressor {
         }
     }
 
+    /**
+     * Descomprime un archivo utilizando el algoritmo de Huffman.
+     *
+     * @param inputHuff La ruta del archivo comprimido (.huff)
+     * @param inputTree La ruta del archivo que contiene el árbol de Huffman (.hufftree)
+     * @param outputTxt La ruta donde se guardará el archivo de texto descomprimido
+     * @throws IOException Si ocurre un error durante la lectura o escritura de archivos
+     */
     public static void decompress(String inputHuff, String inputTree, String outputTxt) throws IOException {
         // Leer árbol de Huffman desde archivo
         String treeData = new String(Files.readAllBytes(new File(inputTree).toPath()));

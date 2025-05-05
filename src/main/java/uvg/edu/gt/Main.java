@@ -2,7 +2,16 @@ package uvg.edu.gt;
 
 import java.util.Scanner;
 
+/**
+ * Clase principal que proporciona una interfaz de línea de comandos para
+ * la compresión y descompresión de archivos utilizando el algoritmo de Huffman.
+ */
 public class Main {
+    /**
+     * Método principal que ejecuta la aplicación.
+     * Muestra un menú interactivo para que el usuario seleccione entre comprimir,
+     * descomprimir o salir del programa.
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
